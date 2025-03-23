@@ -1,0 +1,207 @@
+{
+    "name": "Minimal Hybrid",
+    "progressions": [
+        {
+            "name": "531",
+            "increment": "weekly",
+            "variables": [
+                "TRAINING_MAX"
+            ],
+            "steps": [
+                {
+                    "reps": [
+                        5,
+                        5,
+                        5
+                    ],
+                    "weight": [
+                        "${0.65 * TRAINING_MAX}",
+                        "${0.75 * TRAINING_MAX}",
+                        "${0.85 * TRAINING_MAX}"
+                    ]
+                },
+                {
+                    "reps": [
+                        3,
+                        3,
+                        3
+                    ],
+                    "weight": [
+                        "${0.70 * TRAINING_MAX}",
+                        "${0.80 * TRAINING_MAX}",
+                        "${0.90 * TRAINING_MAX}"
+                    ]
+                },
+                {
+                    "reps": [
+                        5,
+                        3,
+                        1
+                    ],
+                    "weight": [
+                        "${0.75 * TRAINING_MAX}",
+                        "${0.85 * TRAINING_MAX}",
+                        "${0.95 * TRAINING_MAX}"
+                    ]
+                }
+            ]
+        }
+    ],
+    "sessions": [
+        {
+            "name": "Squat / Bench",
+            "parser": "default_lift",
+            "exercises": [
+                {
+                    "name": "Squat",
+                    "progression": {
+                        "name": "531",
+                        "variables": {
+                            "TRAINING_MAX": "MAX SQUAT"
+                        }
+                    }
+                },
+                {
+                    "name": "Bench",
+                    "progression": {
+                        "name": "531",
+                        "variables": {
+                            "TRAINING_MAX": "MAX_BENCH"
+                        }
+                    }
+                },
+                {
+                    "name": "Assistance Circuit",
+                    "exercises": [
+                        {
+                            "name": "Push-ups",
+                            "reps": 100
+                        },
+                        {
+                            "name": "Pull-ups",
+                            "reps": 50
+                        },
+                        {
+                            "name": "Kettlebell Swings",
+                            "reps": 100
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Easy Run",
+            "parser": "default_cardio",
+            "exercises": [
+                {
+                    "name": "Run",
+                    "distance": 5,
+                    "units": "km"
+                }
+            ]
+        },
+        {
+            "name": "Z2 Bike",
+            "parser": "default_cardio",
+            "exercises": [
+                {
+                    "name": "Indoor Cycling",
+                    "time": 45,
+                    "units": "minutes"
+                }
+            ]
+        },
+        {
+            "name": "Deadlift / Press",
+            "parser": "default_lift",
+            "exercises": [
+                {
+                    "name": "Deadlift",
+                    "progression": {
+                        "name": "531",
+                        "variables": {
+                            "TRAINING_MAX": "MAX_DEADLIFT"
+                        }
+                    }
+                },
+                {
+                    "name": "Press",
+                    "progression": {
+                        "name": "531",
+                        "variables": {
+                            "TRAINING_MAX": "MAX_PRESS"
+                        }
+                    }
+                },
+                {
+                    "name": "Assistance Circuit w/ Weight",
+                    "exercises": [
+                        {
+                            "name": "Dips",
+                            "reps": 50
+                        },
+                        {
+                            "name": "Pull-ups",
+                            "reps": 25
+                        },
+                        {
+                            "name": "Split squats",
+                            "reps": 50
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Vo2 Max Run",
+            "parser": "default_cardio",
+            "exercises": [
+                {
+                    "name": "Run",
+                    "distance": 1,
+                    "units": "m"
+                }
+            ]
+        },
+        {
+            "name": "Long Run",
+            "parser": "default_cardio",
+            "exercises": [
+                {
+                    "name": "Run",
+                    "distance": 10,
+                    "units": "km"
+                }
+            ]
+        }
+    ],
+    "schedule": [
+        {
+            "week": 1,
+            "startOnDay": "Monday",
+            "days": [
+                {
+                    "session": "Squat / Bench"
+                },
+                {
+                    "session": "Easy Run"
+                },
+                {
+                    "session": "Z2 Bike"
+                },
+                {
+                    "session": "Deadlift / Press"
+                },
+                {
+                    "session": "Vo2 Max Run"
+                },
+                {
+                    "session": "Z2 Bike"
+                },
+                {
+                    "session": "Long Run"
+                }
+            ]
+        }
+    ]
+}

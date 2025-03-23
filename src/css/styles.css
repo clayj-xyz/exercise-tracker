@@ -20,11 +20,18 @@
   /* Center the day container horizontally */
 }
 
+.variables {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pico-spacing);
+  width: 100%;
+  align-items: center;
+}
+
 .day {
   border: var(--pico-border-width) solid var(--pico-muted-border-color);
   border-radius: var(--pico-border-radius);
   padding: var(--pico-spacing);
-  text-align: center;
   background-color: var(--pico-card-background-color);
   box-shadow: var(--pico-box-shadow);
   width: 100%;
@@ -36,6 +43,7 @@
 .day-header {
   font-weight: var(--pico-font-weight-bold);
   margin-bottom: calc(var(--pico-spacing) * 0.5);
+  text-align: center;
 }
 
 .session {

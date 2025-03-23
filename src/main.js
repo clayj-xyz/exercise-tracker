@@ -1,4 +1,5 @@
 const invoke = window.__TAURI__.core.invoke;
+const { readTextFile, BaseDirectory } = window.__TAURI__.fs;
 
 function defaultLiftParser(session) {
   const table = document.createElement("table");
@@ -114,17 +115,48 @@ function buildSessionDisplay(session) {
   return sessionElement;
 }
 
-window.addEventListener("DOMContentLoaded", async () => {
-  const scheduleContainer = document.getElementById("schedule");
+function computeVariableValue(value, variables) {
+  if (typeof value === "string" && value.startsWith("${") && value.endsWith("}")) {
+    const expression = value.slice(2, -1);
+    return Function(...Object.keys(variables), `return ${expression}`)(
+      ...Object.values(variables).map(data => data.value)
+    );
+  }
+  return value;
+}
 
-  // Fetch the program data using Tauri command
-  const program = await invoke("read_program").then(JSON.parse);
+function displayVariables(variables) {
+  const variablesContainer = document.getElementById("variables");
+  const variableHeader = document.createElement("div");
+  variableHeader.classList.add("day-header");
+  variableHeader.textContent = "Variables";
+  variableHeader.appendChild(document.createElement("hr"));
+  variablesContainer.appendChild(variableHeader);
+  Object.entries(variables).forEach(([key, data]) => {
+    const variableElement = document.createElement("div");
+    const computedValue = computeVariableValue(data.value, variables);
+    variableElement.textContent = `${key}: ${computedValue}`;
+    variablesContainer.appendChild(variableElement);
+  });
+}
+
+window.addEventListener("DOMContentLoaded", async () => {
+  const program = await readTextFile('.local/share/exercise-tracker/data/program.json', {
+    baseDir: BaseDirectory.Home,
+  }).then(JSON.parse);
+  const variables = await readTextFile('.local/share/exercise-tracker/data/variables.json', {
+    baseDir: BaseDirectory.Home,
+  }).then(JSON.parse);
 
   const name = program.name;
   const nameElement = document.getElementById("program-name");
   nameElement.textContent = name;
 
+  // Display variables
+  displayVariables(variables);
+
   // Render the schedule
+  const scheduleContainer = document.getElementById("schedule");
   const week = program.schedule[0]; // Assuming only one week for now
   week.days.forEach((day, index) => {
     const sessionName = day.session;

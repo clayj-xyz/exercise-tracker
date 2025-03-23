@@ -1,0 +1,34 @@
+{
+    "MAX_SQUAT": {
+        "editable": true,
+        "value": 315
+    },
+    "MAX_BENCH": {
+        "editable": true,
+        "value": 250
+    },
+    "MAX_DEADLIFT": {
+        "editable": true,
+        "value": 335
+    },
+    "MAX_PRESS": {
+        "editable": true,
+        "value": 135
+    },
+    "SQUAT_TM": {
+        "editable": false,
+        "value": "${0.9 * MAX_SQUAT}"
+    },
+    "BENCH_TM": {
+        "editable": false,
+        "value": "${0.9 * MAX_BENCH}"
+    },
+    "DEADLIFT_TM": {
+        "editable": false,
+        "value": "${0.9 * MAX_DEADLIFT}"
+    },
+    "PRESS_TM": {
+        "editable": false,
+        "value": "${0.9 * MAX_PRESS}"
+    }
+}
