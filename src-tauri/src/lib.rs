@@ -1,5 +1,4 @@
 use std::fs;
-use std::path::PathBuf;
 extern crate dirs;
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
