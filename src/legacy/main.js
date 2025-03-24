@@ -115,10 +115,16 @@ function buildSessionDisplay(session) {
   return sessionElement;
 }
 
+function round5(x) {
+  return Math.ceil(x / 5) * 5;
+}
+
 function computeVariableValue(value, variables) {
   if (typeof value === "string" && value.startsWith("${") && value.endsWith("}")) {
     const expression = value.slice(2, -1);
-    return Function(...Object.keys(variables), `return ${expression}`)(
+    const builtins = ["round5"];
+    return Function(...builtins, ...Object.keys(variables), `return ${expression}`)(
+      round5,
       ...Object.values(variables).map(data => data.value)
     );
   }

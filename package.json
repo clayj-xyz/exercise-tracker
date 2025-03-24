@@ -1,15 +1,28 @@
 {
   "name": "exercise-tracker",
-  "private": true,
   "version": "0.1.0",
+  "description": "",
   "type": "module",
   "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
     "tauri": "tauri"
   },
   "devDependencies": {
+    "typescript": "~5.6.2",
+    "vite": "^6.0.3",
+    "vite-plugin-solid": "^2.11.0",
     "@tauri-apps/cli": "^2"
   },
   "dependencies": {
-    "@tauri-apps/plugin-fs": "~2"
+    "@tailwindcss/postcss": "^4.0.15",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-fs": "~2",
+    "@tauri-apps/plugin-opener": "^2",
+    "postcss": "^8.5.3",
+    "solid-js": "^1.9.3",
+    "tailwindcss": "^4.0.15"
   }
 }
